@@ -1,8 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
+from .models import Expenses, ExpenseCategories
 class UserSerializer(serializers.ModelSerializer): 
- # Currently unused in preference of the below. 
- # """ 
 	email = serializers.EmailField( required=True )
 	username = serializers.CharField() 
 	password = serializers.CharField(min_length=8, write_only=True) 
@@ -19,3 +18,14 @@ class UserSerializer(serializers.ModelSerializer):
 		instance.set_password(password) 
 		instance.save() 
 		return instance
+
+class ExpensesSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Expenses
+		fields = '__all__'
+		
+	
+class ExpenseCategoriesSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = ExpenseCategories
+		fields = '__all__'

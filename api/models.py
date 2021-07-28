@@ -18,7 +18,7 @@ class Budget(models.Model):
 	date=models.DateField()
 	category=models.ForeignKey('ExpenseCategories', on_delete=models.CASCADE)
 	budgeted_money=models.DecimalField(max_digits=8, decimal_places=2)
-	notes=models.CharField(max_length=255)
+	notes=models.CharField(max_length=255) # todo: not required field
         
 	def __str__(self):
 		return f"{self.budgeted_money} from category: {self.category} on {self.date}"
