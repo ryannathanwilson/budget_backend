@@ -2,13 +2,18 @@ from django.shortcuts import render
 from .serializers import UserSerializer, ExpensesSerializer, ExpenseCategoriesSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 from .models import Expenses, ExpenseCategories, Budget
 import json
 from datetime import datetime
 
 
 # Create your views here.
-
+class ExpenseView(viewsets.ModelViewSet):
+    queryset = Expenses.objects.all()
+    serializer_class = ExpensesSerializer
+    permission_classes = [IsAuthenticated]
 
 @api_view(['GET'])
 def current_user(request):
@@ -18,6 +23,7 @@ def current_user(request):
 
     serializer = UserSerializer(request.user)
     return Response(serializer.data)
+
 
 
 @api_view(['GET'])

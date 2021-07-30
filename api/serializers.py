@@ -20,12 +20,14 @@ class UserSerializer(serializers.ModelSerializer):
 		return instance
 
 class ExpensesSerializer(serializers.ModelSerializer):
+
 	class Meta:
 		model = Expenses
 		fields = '__all__'
 		
 	
 class ExpenseCategoriesSerializer(serializers.ModelSerializer):
+	# category = serializers.CharField()
 	class Meta:
 		model = ExpenseCategories
 		fields = '__all__'
